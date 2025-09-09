@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {pageBuilder} from './pageBuilder'
+import {BookIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'course',
@@ -45,7 +46,7 @@ export default defineType({
       const {title, slug} = selection
       return {
         title: title,
-        subtitle: slug || 'No slug',
+        media: BookIcon,
       }
     },
   },

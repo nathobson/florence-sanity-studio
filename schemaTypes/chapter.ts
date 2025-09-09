@@ -1,12 +1,12 @@
 import {ALL_FIELDS_GROUP, defineField, defineType} from 'sanity'
 import {orderRankField} from '@sanity/orderable-document-list'
 import {pageBuilder} from './pageBuilder'
+import {BookmarkIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'chapter',
   title: 'Chapter',
   type: 'document',
-  icon: () => '📖',
   fields: [
     orderRankField({type: 'chapter'}),
     defineField({
@@ -99,8 +99,7 @@ export default defineType({
       const {title, courseTitle} = selection
       return {
         title: title,
-        subtitle: courseTitle ? `Course: ${courseTitle}` : 'No course assigned',
-        media: () => '📖',
+        media: BookmarkIcon,
       }
     },
   },

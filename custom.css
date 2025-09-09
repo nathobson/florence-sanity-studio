@@ -16,3 +16,14 @@ a[href*='template=chapter'][href*='type=chapter']:not([href*='template=chapter-f
 button[aria-label='Create new document'][data-testid='new-document-button'] {
   display: none !important;
 }
+
+div[data-ui='DocumentListPane']#chapters-chapters-0 span[data-testid='Media'],
+div[data-ui='DocumentListPane']#course-courses-0 span[data-testid='Media'] {
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 1.5em;
+
+  span[data-border] {
+    display: none !important;
+  }
+}
