@@ -62,35 +62,35 @@ export const structure = (S: StructureBuilder, context: any) =>
         ),
 
       // All chapters (read-only view)
-      S.listItem()
-        .title('All Chapters')
-        .icon(DocumentIcon)
-        .child(
-          S.documentTypeList('chapter')
-            .title('All Chapters')
-            .canHandleIntent((intentName: string, params: any) => {
-              // Only allow editing, not creating
-              return intentName === 'edit' && params.type === 'chapter'
-            }),
-        ),
+      // S.listItem()
+      //   .title('All Chapters')
+      //   .icon(DocumentIcon)
+      //   .child(
+      //     S.documentTypeList('chapter')
+      //       .title('All Chapters')
+      //       .canHandleIntent((intentName: string, params: any) => {
+      //         // Only allow editing, not creating
+      //         return intentName === 'edit' && params.type === 'chapter'
+      //       }),
+      //   ),
 
       // Divider
       S.divider(),
 
       // Settings & Configuration
       S.listItem()
-        .title('Prompts Configuration')
+        .title('Global prompt')
         .icon(CogIcon)
         .child(
           S.editor()
-            .id('prompts')
-            .schemaType('prompts')
-            .documentId('prompts')
-            .title('AI Prompts Configuration'),
+            .id('globalPrompt')
+            .schemaType('globalPrompt')
+            .documentId('globalPrompt')
+            .title('Global prompt configuration'),
         ),
 
       // Other document types (if any)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['course', 'chapter', 'prompts'].includes(listItem.getId() || ''),
+        (listItem) => !['course', 'chapter', 'globalPrompt'].includes(listItem.getId() || ''),
       ),
     ])

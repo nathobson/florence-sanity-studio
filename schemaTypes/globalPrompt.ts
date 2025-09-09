@@ -2,8 +2,8 @@ import {defineField, defineType} from 'sanity'
 import {CogIcon} from '@sanity/icons'
 
 export default defineType({
-  name: 'prompts',
-  title: 'Prompts',
+  name: 'globalPrompt',
+  title: 'Global prompt',
   type: 'document',
   icon: CogIcon,
   fields: [
