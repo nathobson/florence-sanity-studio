@@ -1,26 +1,27 @@
 import {defineField, defineType} from 'sanity'
 import {CogIcon} from '@sanity/icons'
 
-export default defineType({
+// Global system prompt singleton
+export const globalPrompt = defineType({
   name: 'globalPrompt',
-  title: 'Global prompt',
+  title: 'Global System Prompt',
   type: 'document',
   icon: CogIcon,
   fields: [
     defineField({
       name: 'systemPrompt',
-      title: 'System Prompt',
+      title: 'Global System Prompt',
       type: 'text',
       rows: 30,
-      description: 'Global system prompt for AI interactions',
-      validation: (Rule) => Rule.required().error('System prompt is required'),
+      description: 'Global system prompt for AI interactions across the platform',
+      validation: (Rule) => Rule.required().error('Global system prompt is required'),
     }),
   ],
   preview: {
     prepare() {
       return {
-        title: 'System Prompts Configuration',
-        subtitle: 'Global AI prompts settings',
+        title: 'Global System Prompt',
+        subtitle: 'Platform-wide AI prompt configuration',
         media: CogIcon,
       }
     },

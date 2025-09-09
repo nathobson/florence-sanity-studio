@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {ALL_FIELDS_GROUP, defineField, defineType} from 'sanity'
 import {pageBuilder} from './pageBuilder'
 import {BookIcon} from '@sanity/icons'
 
@@ -9,52 +9,128 @@ export default defineType({
   icon: () => '📚',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Course Title',
+      name: 'name',
+      title: 'Course Name',
       type: 'string',
-      validation: (Rule) => Rule.required().error('Course title is required'),
+      validation: (Rule) => Rule.required().error('Course name is required'),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'name',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required().error('Slug is required for course URLs'),
     }),
     defineField({
-      name: 'description',
-      title: 'Course Description',
-      type: 'text',
-      rows: 4,
-    }),
-    {
-      ...pageBuilder,
       name: 'content',
-      title: 'Course Content',
-      description: 'Use the page builder to create rich content for your course overview',
-    },
+      title: ' ',
+      type: 'object',
+      groups: [
+        {
+          name: 'overview',
+          title: 'Course overview',
+        },
+        {
+          name: 'personalisation',
+          title: 'Personalisation questions',
+        },
+        {
+          name: 'chapters',
+          title: 'Chapters',
+        },
+        {
+          name: 'prompt',
+          title: 'Prompt',
+        },
+        {
+          ...ALL_FIELDS_GROUP,
+          hidden: true,
+        },
+      ],
+      fields: [
+        {
+          ...pageBuilder,
+          name: 'layout',
+          title: 'Layout',
+          group: 'overview',
+        },
+        {
+          name: 'personalisationQuestions',
+          title: 'Personalisation Questions',
+          type: 'array',
+          group: 'personalisation',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'question',
+                  title: 'Question',
+                  type: 'string',
+                  validation: (Rule) => Rule.required().error('Question is required'),
+                },
+              ],
+              preview: {
+                select: {
+                  title: 'question',
+                },
+                prepare(selection) {
+                  const {title} = selection
+                  return {
+                    title: title || 'Untitled question',
+                  }
+                },
+              },
+            },
+          ],
+        },
+        {
+          name: 'chapters',
+          title: 'Course Chapters',
+          type: 'array',
+          group: 'chapters',
+          of: [
+            {
+              type: 'reference',
+              to: [{type: 'chapter'}],
+            },
+          ],
+          options: {
+            layout: 'list',
+          },
+        },
+        {
+          name: 'prompt',
+          title: 'System Prompt',
+          type: 'reference',
+          group: 'prompt',
+          to: [{type: 'systemPrompts'}],
+          description: 'Select a system prompt to use for this course',
+        },
+      ],
+    }),
   ],
   preview: {
     select: {
-      title: 'title',
+      name: 'name',
       slug: 'slug.current',
     },
     prepare(selection) {
-      const {title, slug} = selection
+      const {name, slug} = selection
       return {
-        title: title,
+        title: name,
         media: BookIcon,
       }
     },
   },
   orderings: [
     {
-      title: 'Title',
-      name: 'titleAsc',
-      by: [{field: 'title', direction: 'asc'}],
+      title: 'Name',
+      name: 'nameAsc',
+      by: [{field: 'name', direction: 'asc'}],
     },
   ],
 })

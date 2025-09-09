@@ -77,20 +77,27 @@ export const structure = (S: StructureBuilder, context: any) =>
       // Divider
       S.divider(),
 
-      // Settings & Configuration
+      // Global System Prompt (singleton)
       S.listItem()
-        .title('Global prompt')
+        .title('Global System Prompt')
         .icon(CogIcon)
         .child(
           S.editor()
             .id('globalPrompt')
             .schemaType('globalPrompt')
             .documentId('globalPrompt')
-            .title('Global prompt configuration'),
+            .title('Global System Prompt Configuration'),
         ),
+
+      // System Prompts (collection)
+      S.listItem()
+        .title('System Prompts')
+        .icon(CogIcon)
+        .child(S.documentTypeList('systemPrompts').title('System Prompts')),
 
       // Other document types (if any)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['course', 'chapter', 'globalPrompt'].includes(listItem.getId() || ''),
+        (listItem) =>
+          !['course', 'chapter', 'globalPrompt', 'systemPrompts'].includes(listItem.getId() || ''),
       ),
     ])
