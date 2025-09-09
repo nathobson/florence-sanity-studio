@@ -1,5 +1,5 @@
 import {StructureBuilder} from 'sanity/structure'
-import {BookIcon, DocumentIcon} from '@sanity/icons'
+import {BookIcon, DocumentIcon, CogIcon} from '@sanity/icons'
 import React from 'react'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
@@ -77,8 +77,20 @@ export const structure = (S: StructureBuilder, context: any) =>
       // Divider
       S.divider(),
 
+      // Settings & Configuration
+      S.listItem()
+        .title('Prompts Configuration')
+        .icon(CogIcon)
+        .child(
+          S.editor()
+            .id('prompts')
+            .schemaType('prompts')
+            .documentId('prompts')
+            .title('AI Prompts Configuration'),
+        ),
+
       // Other document types (if any)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['course', 'chapter'].includes(listItem.getId() || ''),
+        (listItem) => !['course', 'chapter', 'prompts'].includes(listItem.getId() || ''),
       ),
     ])

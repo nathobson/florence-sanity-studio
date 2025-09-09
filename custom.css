@@ -12,3 +12,7 @@ a[href*='template=chapter'][href*='type=chapter']:not([href*='template=chapter-f
 [data-testid='pane-content'] [aria-label='Chapter'] {
   display: none !important;
 }
+
+button[aria-label='Create new document'][data-testid='new-document-button'] {
+  display: none !important;
+}

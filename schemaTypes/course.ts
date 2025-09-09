@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {pageBuilder} from './pageBuilder'
 
 export default defineType({
   name: 'course',
@@ -28,6 +29,12 @@ export default defineType({
       type: 'text',
       rows: 4,
     }),
+    {
+      ...pageBuilder,
+      name: 'content',
+      title: 'Course Content',
+      description: 'Use the page builder to create rich content for your course overview',
+    },
   ],
   preview: {
     select: {
