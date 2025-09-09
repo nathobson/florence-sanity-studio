@@ -1,0 +1,14 @@
+/* Hide the default "Chapter" template option when in course context */
+[data-testid='action-intent-button-1'][aria-label='Chapter'] {
+  display: none !important;
+}
+
+/* Alternative selector in case the testid changes */
+a[href*='template=chapter'][href*='type=chapter']:not([href*='template=chapter-for-course']) {
+  display: none !important;
+}
+
+/* More specific selector for the course chapters context */
+[data-testid='pane-content'] [aria-label='Chapter'] {
+  display: none !important;
+}

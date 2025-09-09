@@ -1,5 +1,6 @@
 import {StructureBuilder} from 'sanity/structure'
 import {BookIcon, DocumentIcon} from '@sanity/icons'
+import React from 'react'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
 export const structure = (S: StructureBuilder, context: any) =>
@@ -28,7 +29,7 @@ export const structure = (S: StructureBuilder, context: any) =>
                     .title('Chapters')
                     .icon(DocumentIcon)
                     .child(
-                      S.documentTypeList('chapter')
+                      S.documentList()
                         .title('Chapters')
                         .filter('_type == "chapter" && course._ref == $courseId')
                         .params({courseId})
@@ -44,11 +45,6 @@ export const structure = (S: StructureBuilder, context: any) =>
                                 {courseId: courseId},
                               ],
                             }),
-                        ])
-                        .initialValueTemplates([
-                          S.initialValueTemplateItem('chapter-for-course')
-                            .title('New Chapter')
-                            .description('Create a new chapter for this course'),
                         ])
                         .canHandleIntent((intentName: string, params: any) => {
                           // Handle create and edit intents within this context

@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
 import {templates} from './templates'
+import './custom.css'
 
 export default defineConfig({
   name: 'default',

@@ -3,11 +3,35 @@ import type {Template} from 'sanity'
 // Default chapter template (for creating chapters directly)
 export const chapterTemplate: Template = {
   id: 'chapter',
-  title: 'Chapter (No Course)',
-  description: 'Create a new chapter without course assignment',
+  title: 'Chapter',
+  description: 'Create a new chapter',
   schemaType: 'chapter',
-  value: async (_: any, context: any) => {
+  value: async (params: any, context: any) => {
     try {
+      // Try to detect if we're in a course context
+      // Check if there's a courseId in the URL or context
+      const urlParams = new URLSearchParams(window.location.search)
+      const courseId =
+        urlParams.get('courseId') || context?.templateParams?.courseId || params?.courseId
+
+      if (courseId) {
+        // If we have a courseId, assign the course
+        const course = await context
+          .getClient({apiVersion: '2024-01-01'})
+          .fetch(
+            `*[_type == "course" && _id == $courseId][0]{_id, title, "chapterCount": count(*[_type == "chapter" && course._ref == ^._id])}`,
+            {courseId: courseId},
+          )
+
+        return {
+          course: {
+            _type: 'reference',
+            _ref: courseId,
+          },
+          title: `Chapter ${(course?.chapterCount || 0) + 1}`,
+        }
+      }
+
       // Get the count of existing chapters to generate title
       const count = await context
         .getClient({apiVersion: '2024-01-01'})
@@ -76,4 +100,4 @@ export const chapterForCourseTemplate: Template = {
   },
 }
 
-export const templates = [chapterForCourseTemplate]
+export const templates = [chapterTemplate, chapterForCourseTemplate]
