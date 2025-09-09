@@ -28,24 +28,55 @@ export const structure = (S: StructureBuilder, context: any) =>
                     .title('Chapters')
                     .icon(DocumentIcon)
                     .child(
-                      S.documentList()
+                      S.documentTypeList('chapter')
                         .title('Chapters')
                         .filter('_type == "chapter" && course._ref == $courseId')
                         .params({courseId})
                         .defaultOrdering([{field: 'orderRank', direction: 'asc'}])
+                        .menuItems([
+                          S.menuItem()
+                            .title('New Chapter')
+                            .icon(DocumentIcon)
+                            .intent({
+                              type: 'create',
+                              params: [
+                                {type: 'chapter', template: 'chapter-for-course'},
+                                {courseId: courseId},
+                              ],
+                            }),
+                        ])
                         .initialValueTemplates([
-                          S.initialValueTemplateItem('chapter-for-course', {courseId}),
-                        ]),
+                          S.initialValueTemplateItem('chapter-for-course')
+                            .title('New Chapter')
+                            .description('Create a new chapter for this course'),
+                        ])
+                        .canHandleIntent((intentName: string, params: any) => {
+                          // Handle create and edit intents within this context
+                          return (
+                            (intentName === 'create' && params.type === 'chapter') ||
+                            (intentName === 'edit' && params.type === 'chapter')
+                          )
+                        })
+                        .child((documentId: string) =>
+                          S.document().documentId(documentId).schemaType('chapter'),
+                        ),
                     ),
                 ]),
             ),
         ),
 
-      // All chapters (for advanced users)
+      // All chapters (read-only view)
       S.listItem()
         .title('All Chapters')
         .icon(DocumentIcon)
-        .child(S.documentTypeList('chapter').title('All Chapters')),
+        .child(
+          S.documentTypeList('chapter')
+            .title('All Chapters')
+            .canHandleIntent((intentName: string, params: any) => {
+              // Only allow editing, not creating
+              return intentName === 'edit' && params.type === 'chapter'
+            }),
+        ),
 
       // Divider
       S.divider(),
