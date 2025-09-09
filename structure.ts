@@ -57,6 +57,17 @@ export const structure = (S: StructureBuilder, context: any) =>
                           S.document().documentId(documentId).schemaType('chapter'),
                         ),
                     ),
+
+                  // Reorder chapters for this course
+                  orderableDocumentListDeskItem({
+                    type: 'chapter',
+                    S,
+                    context,
+                    title: '📋 Reorder Chapters',
+                    icon: DocumentIcon,
+                    filter: '_type == "chapter" && course._ref == $courseId',
+                    params: {courseId},
+                  }),
                 ]),
             ),
         ),

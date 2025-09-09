@@ -15,18 +15,51 @@ export default defineType({
         hotspot: true,
       },
       validation: (Rule) => Rule.required().error('Image is required'),
-    },
-    {
-      name: 'alt',
-      title: 'Alt Text',
-      type: 'string',
-      description: 'Important for accessibility',
-    },
-    {
-      name: 'caption',
-      title: 'Caption',
-      type: 'string',
-      description: 'Optional caption displayed below the image',
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Important for accessibility',
+        },
+        {
+          name: 'caption',
+          title: 'Caption',
+          type: 'array',
+          of: [
+            {
+              type: 'block',
+              styles: [{title: 'Normal', value: 'normal'}],
+              lists: [],
+              marks: {
+                decorators: [
+                  {title: 'Strong', value: 'strong'},
+                  {title: 'Emphasis', value: 'em'},
+                ],
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'Link',
+                    fields: [
+                      {
+                        name: 'href',
+                        type: 'url',
+                        title: 'URL',
+                      },
+                      {
+                        title: 'Open in new tab',
+                        name: 'blank',
+                        type: 'boolean',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
     },
   ],
   preview: {

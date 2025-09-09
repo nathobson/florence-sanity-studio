@@ -11,7 +11,7 @@ export default defineType({
       name: 'heading',
       title: 'Heading',
       type: 'string',
-      placeholder: 'Listen to an audio on...',
+      initialValue: 'Listen to an audio on...',
       description: 'Heading for the audio section',
     },
     {
@@ -44,7 +44,7 @@ export default defineType({
       return {
         title,
         subtitle: 'Audio',
-        media: SpeakerIcon,
+        media: MicrophoneIcon,
       }
     },
   },

@@ -88,21 +88,6 @@ export default defineType({
           ],
         },
         {
-          name: 'chapters',
-          title: 'Course Chapters',
-          type: 'array',
-          group: 'chapters',
-          of: [
-            {
-              type: 'reference',
-              to: [{type: 'chapter'}],
-            },
-          ],
-          options: {
-            layout: 'list',
-          },
-        },
-        {
           name: 'prompt',
           title: 'System Prompt',
           type: 'reference',
