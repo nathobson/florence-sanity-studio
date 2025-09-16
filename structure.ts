@@ -1,5 +1,5 @@
 import {StructureBuilder} from 'sanity/structure'
-import {BookIcon, DocumentIcon, CogIcon} from '@sanity/icons'
+import {BookIcon, DocumentIcon, CogIcon, DragHandleIcon} from '@sanity/icons'
 import React from 'react'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
@@ -63,8 +63,8 @@ export const structure = (S: StructureBuilder, context: any) =>
                     type: 'chapter',
                     S,
                     context,
-                    title: '📋 Reorder Chapters',
-                    icon: DocumentIcon,
+                    title: 'Reorder Chapters',
+                    icon: DragHandleIcon,
                     filter: '_type == "chapter" && course._ref == $courseId',
                     params: {courseId},
                   }),

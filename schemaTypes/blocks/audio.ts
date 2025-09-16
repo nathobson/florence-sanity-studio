@@ -23,12 +23,18 @@ export default defineType({
     },
     {
       name: 'audioFile',
-      title: 'Audio File',
+      title: 'Audio file',
       type: 'file',
       options: {
         accept: 'audio/*',
       },
       validation: (Rule) => Rule.required().error('Audio file is required'),
+    },
+    {
+      name: 'audioCaptions',
+      title: 'Audio captions file',
+      description: 'Captions should be in .vtt format',
+      type: 'file',
     },
   ],
   preview: {
