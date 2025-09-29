@@ -39,11 +39,10 @@ export default defineType({
     prepare(selection) {
       const {quoteText, attribution, media} = selection
       const title = quoteText || 'Currently no quote text, add content to this block'
-      const subtitle = attribution ? `— ${attribution}` : 'Quote'
 
       return {
         title,
-        subtitle,
+        subtitle: 'Quote',
         media: media ?? BlockquoteIcon,
       }
     },

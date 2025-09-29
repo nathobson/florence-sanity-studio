@@ -7,13 +7,23 @@ import {
   textColumnsWithImage,
   video,
   audio,
+  imageCarousel,
 } from './blocks'
 
 export const pageBuilder = defineField({
   name: 'pageBuilder',
   title: 'Page Builder',
   type: 'array',
-  of: [imageBlock, textBlock, numberedList, quote, textColumnsWithImage, video, audio],
+  of: [
+    imageBlock,
+    textBlock,
+    numberedList,
+    quote,
+    textColumnsWithImage,
+    video,
+    audio,
+    imageCarousel,
+  ],
   options: {
     insertMenu: {
       groups: [
