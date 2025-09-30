@@ -14,6 +14,18 @@ export default defineType({
       description: 'Heading for the image carousel section',
     },
     {
+      name: 'imageOrientation',
+      title: 'Image Orientation',
+      type: 'string',
+      description:
+        'Orientation for all images in the carousel. Portrait images are 3:4, landscape images are 4:3.',
+      initialValue: 'portrait',
+      options: {
+        list: ['portrait', 'landscape'],
+        layout: 'dropdown',
+      },
+    },
+    {
       name: 'images',
       title: 'Carousel Images',
       type: 'array',
