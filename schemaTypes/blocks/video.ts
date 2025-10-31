@@ -8,6 +8,12 @@ export default defineType({
   icon: PlayIcon,
   fields: [
     {
+      name: 'heading',
+      title: 'Heading',
+      type: 'string',
+      description: 'An optional heading for the video',
+    },
+    {
       name: 'video',
       title: 'Video File',
       type: 'file',

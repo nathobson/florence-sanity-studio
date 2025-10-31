@@ -8,6 +8,12 @@ export default defineType({
   icon: ImageIcon,
   fields: [
     {
+      name: 'heading',
+      title: 'Heading',
+      type: 'string',
+      description: 'An optional heading for the image',
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
