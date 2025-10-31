@@ -14,6 +14,17 @@ export default defineType({
       description: 'Optional heading for the entire section',
     },
     {
+      name: 'numberOfColumns',
+      title: 'Number of Columns',
+      type: 'number',
+      description: 'The number of columns to display on desktop',
+      initialValue: 3,
+      options: {
+        list: [1, 2, 3],
+        layout: 'dropdown',
+      },
+    },
+    {
       name: 'items',
       title: 'Items',
       type: 'array',
