@@ -6,6 +6,7 @@ import quote from './quote'
 import textColumnsWithImage from './textColumnsWithImage'
 import video from './video'
 import audio from './audio'
+import iframeBlock from './iframeBlock'
 
 export const blockSchemas = [
   imageBlock,
@@ -16,6 +17,7 @@ export const blockSchemas = [
   textColumnsWithImage,
   video,
   audio,
+  iframeBlock,
 ]
 
 export {
@@ -27,4 +29,5 @@ export {
   textColumnsWithImage,
   video,
   audio,
+  iframeBlock,
 }

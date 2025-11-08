@@ -8,6 +8,7 @@ import {
   video,
   audio,
   imageCarousel,
+  iframeBlock,
 } from './blocks'
 
 export const pageBuilder = defineField({
@@ -23,6 +24,7 @@ export const pageBuilder = defineField({
     video,
     audio,
     imageCarousel,
+    iframeBlock,
   ],
   options: {
     insertMenu: {
@@ -35,7 +37,7 @@ export const pageBuilder = defineField({
         {
           name: 'media',
           title: 'Media',
-          of: ['imageBlock', 'video', 'audio'],
+          of: ['imageBlock', 'video', 'audio', 'iframeBlock'],
         },
         {
           name: 'layout',
