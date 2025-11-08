@@ -9,6 +9,7 @@ import {
   audio,
   imageCarousel,
   iframeBlock,
+  imageAndText,
 } from './blocks'
 
 export const pageBuilder = defineField({
@@ -25,6 +26,7 @@ export const pageBuilder = defineField({
     audio,
     imageCarousel,
     iframeBlock,
+    imageAndText,
   ],
   options: {
     insertMenu: {
@@ -42,7 +44,7 @@ export const pageBuilder = defineField({
         {
           name: 'layout',
           title: 'Layout',
-          of: ['numberedList', 'textColumnsWithImage'],
+          of: ['numberedList', 'textColumnsWithImage', 'imageAndText'],
         },
         {
           name: 'engagement',
