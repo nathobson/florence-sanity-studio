@@ -23,6 +23,16 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Video file is required'),
     },
     {
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      description:
+        'If added, this image will be displayed as the video thumbnail before the video starts',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'caption',
       title: 'Caption',
       type: 'string',
