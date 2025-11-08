@@ -8,6 +8,17 @@ export default defineType({
   icon: OlistIcon,
   fields: [
     {
+      name: 'style',
+      title: 'Style',
+      type: 'string',
+      description: 'Controls the size of the numbers',
+      initialValue: 'small',
+      options: {
+        list: ['small', 'large'],
+        layout: 'dropdown',
+      },
+    },
+    {
       name: 'heading',
       title: 'Heading',
       type: 'string',
@@ -22,12 +33,31 @@ export default defineType({
           type: 'object',
           fields: [
             {
+              name: 'itemHeading',
+              title: 'Heading',
+              type: 'string',
+            },
+            {
               name: 'item',
               title: 'Item',
               type: 'string',
               validation: (Rule) => Rule.required().error('List item is required'),
             },
           ],
+          preview: {
+            select: {
+              itemHeading: 'itemHeading',
+              item: 'item',
+            },
+            prepare(selection) {
+              const {itemHeading, item} = selection
+              return {
+                title: itemHeading || '',
+                subtitle: item || 'No item content',
+                media: OlistIcon,
+              }
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.min(1).error('At least one item is required'),
