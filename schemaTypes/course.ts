@@ -38,6 +38,10 @@ export default defineType({
           title: 'Personalisation questions',
         },
         {
+          name: 'landing',
+          title: 'Landing page',
+        },
+        {
           name: 'chapters',
           title: 'Chapters',
         },
@@ -86,6 +90,14 @@ export default defineType({
               },
             },
           ],
+        },
+        {
+          name: 'landingPageIntroText',
+          title: 'Landing Page Intro Text',
+          type: 'text',
+          rows: 10,
+          group: 'landing',
+          description: 'Custom welcome message for this course\'s landing page chat. Leave empty to use the global default.',
         },
         {
           name: 'prompt',

@@ -88,16 +88,16 @@ export const structure = (S: StructureBuilder, context: any) =>
       // Divider
       S.divider(),
 
-      // Global System Prompt (singleton)
+      // Global Settings (singleton)
       S.listItem()
-        .title('Global System Prompt')
+        .title('Global Settings')
         .icon(CogIcon)
         .child(
           S.editor()
             .id('globalPrompt')
             .schemaType('globalPrompt')
             .documentId('globalPrompt')
-            .title('Global System Prompt Configuration'),
+            .title('Global Settings'),
         ),
 
       // System Prompts (collection)
